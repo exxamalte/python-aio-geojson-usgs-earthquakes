@@ -1,6 +1,6 @@
 import os
 
-from setuptools import setup, find_packages
+from setuptools import find_packages, setup
 
 NAME = "aio_geojson_usgs_earthquakes"
 AUTHOR = "Malte Franken"
@@ -9,9 +9,9 @@ DESCRIPTION = "An async GeoJSON client library for the U.S. Geological Survey Ea
 URL = "https://github.com/exxamalte/python-aio-geojson-usgs-earthquakes"
 
 REQUIRES = [
-    'aio_geojson_client>=0.16',
-    'aiohttp>=3.7.4,<4',
-    'pytz>=2019.01',
+    "aio_geojson_client>=0.16",
+    "aiohttp>=3.7.4,<4",
+    "pytz>=2019.01",
 ]
 
 
@@ -41,5 +41,5 @@ setup(
         "License :: OSI Approved :: Apache Software License",
         "Operating System :: OS Independent",
     ],
-    install_requires=REQUIRES
+    install_requires=REQUIRES,
 )
