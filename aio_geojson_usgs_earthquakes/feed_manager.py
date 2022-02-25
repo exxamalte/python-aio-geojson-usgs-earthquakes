@@ -18,7 +18,7 @@ class UsgsEarthquakeHazardsProgramFeedManager(FeedManagerBase):
         update_callback: Callable[[str], Awaitable[None]],
         remove_callback: Callable[[str], Awaitable[None]],
         coordinates: Tuple[float, float],
-            feed_type,
+            feed_type: str,
         filter_radius: float = None,
         filter_minimum_magnitude: float = None,
         status_callback: Callable[[StatusUpdate], Awaitable[None]] = None,
