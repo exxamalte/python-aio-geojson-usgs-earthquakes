@@ -50,7 +50,7 @@ class UsgsEarthquakeHazardsProgramFeedEntry(FeedEntry):
     @property
     def external_id(self) -> str:
         """Return the external id of this entry."""
-        return self._search_in_properties(ATTR_ID)
+        return self._search_in_feature(ATTR_ID)
 
     @property
     def place(self) -> str:
