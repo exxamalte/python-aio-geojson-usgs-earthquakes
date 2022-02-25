@@ -1,5 +1,5 @@
 """Feed Manager for USGS Earthquake Hazards Program feed."""
-from typing import Awaitable, Callable, List, Tuple
+from typing import Awaitable, Callable, Tuple
 
 from aio_geojson_client.feed_manager import FeedManagerBase
 from aio_geojson_client.status_update import StatusUpdate
@@ -18,7 +18,7 @@ class UsgsEarthquakeHazardsProgramFeedManager(FeedManagerBase):
         update_callback: Callable[[str], Awaitable[None]],
         remove_callback: Callable[[str], Awaitable[None]],
         coordinates: Tuple[float, float],
-            feed_type: str,
+        feed_type: str,
         filter_radius: float = None,
         filter_minimum_magnitude: float = None,
         status_callback: Callable[[StatusUpdate], Awaitable[None]] = None,
