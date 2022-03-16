@@ -91,22 +91,19 @@ Each feed entry is populated with the following properties:
 
 | Name               | Description                                                                                         | Feed attribute |
 |--------------------|-----------------------------------------------------------------------------------------------------|----------------|
-| geometry           | All geometry details of this entry.                                                                 | `geometry`     |
+| geometries         | All geometry details of this entry.                                                                 | `geometry`     |
 | coordinates        | Best coordinates (latitude, longitude) of this entry.                                               | `geometry`     |
-| external_id        | The unique public identifier for this incident.                                                     | `guid`         |
-| title              | Title of this entry.                                                                                | `title`        |
-| attribution        | Attribution of the feed.                                                                            | n/a            |
 | distance_to_home   | Distance in km of this entry to the home coordinates.                                               | n/a            |
-| category           | The alert level of the incident ('Emergency Warning', 'Watch and Act', 'Advice','Not Applicable').  | `category`     |
-| publication_date   | The publication date of the incidents.                                                              | `pubDate`      |
-| description        | The description of the incident.                                                                    | `description`  |
-| location           | Location description of the incident.                                                               | `description` -> `LOCATION`            |
-| council_area       | Council are this incident falls into.                                                               | `description` -> `COUNCIL AREA`        |
-| status             | Status of the incident.                                                                             | `description` -> `STATUS`              |
-| type               | Type of the incident (e.g. Bush Fire, Grass Fire, Hazard Reduction).                                | `description` -> `TYPE`                |
-| fire               | Indicated if this incident is a fire or not (`True`/`False`).                                       | `description` -> `FIRE`                |
-| size               | Size in ha.                                                                                         | `description` -> `SIZE`                |
-| responsible_agency | Agency responsible for this incident.                                                               | `description` -> `RESPONSIBLE AGENCY`  |
+| attribution        | Attribution of the feed.                                                                            | n/a            |
+| external_id        | The unique public identifier for this entry.                                                        | `id`           |
+| title              | Title of this entry.                                                                                | `title`        |
+| place              | Description of the place where this earthquakes occurred.                                           | `place`        |
+| magnitude          | Magnitude of this earthquake.                                                                       | `mag`          |
+| time               | Date and time when this event occurred.                                                             | `time`         |
+| updated            | Date and time when this entry was last updated.                                                     | `updated`      |
+| alert              | Alert level of this entry ("green", "yellow", "orange", "red").                                     | `alert`        |
+| type               | Type of this seismic event ("earthquake", "quarry").                                                | `type`         |
+| status             | Indicates whether the event has been reviewed by a human ("automatic", "reviewed", "deleted").      | `status`       |
 
 
 ## Feed Manager

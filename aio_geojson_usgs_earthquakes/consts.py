@@ -2,12 +2,9 @@
 
 ATTR_ALERT = "alert"
 ATTR_ATTRIBUTION = "attribution"
-ATTR_CATEGORY = "category"
-# ATTR_DESCRIPTION = "description"
 ATTR_ID = "id"
 ATTR_MAG = "mag"
 ATTR_PLACE = "place"
-# ATTR_PUB_DATE = "pubDate"
 ATTR_STATUS = "status"
 ATTR_TIME = "time"
 ATTR_TITLE = "title"
@@ -15,7 +12,6 @@ ATTR_TYPE = "type"
 ATTR_UPDATED = "updated"
 
 FILTER_MINIMUM_MAGNITUDE = "minimum_magnitude"
-# FILTER_RADIUS = "radius"
 
 URL_PREFIX = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/"
 URLS = {

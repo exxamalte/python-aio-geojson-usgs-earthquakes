@@ -8,7 +8,6 @@ from geojson import Feature
 
 from .consts import (
     ATTR_ALERT,
-    ATTR_CATEGORY,
     ATTR_ID,
     ATTR_MAG,
     ATTR_PLACE,
@@ -38,19 +37,14 @@ class UsgsEarthquakeHazardsProgramFeedEntry(FeedEntry):
         return self._attribution
 
     @property
-    def title(self) -> str:
-        """Return the title of this entry."""
-        return self._search_in_properties(ATTR_TITLE)
-
-    @property
-    def category(self) -> str:
-        """Return the category of this entry."""
-        return self._search_in_properties(ATTR_CATEGORY)
-
-    @property
     def external_id(self) -> str:
         """Return the external id of this entry."""
         return self._search_in_feature(ATTR_ID)
+
+    @property
+    def title(self) -> str:
+        """Return the title of this entry."""
+        return self._search_in_properties(ATTR_TITLE)
 
     @property
     def place(self) -> str:
@@ -64,7 +58,7 @@ class UsgsEarthquakeHazardsProgramFeedEntry(FeedEntry):
 
     @property
     def time(self) -> datetime:
-        """Return the time when this event occurred of this entry."""
+        """Return the time when this event occurred."""
         publication_date = self._search_in_properties(ATTR_TIME)
         if publication_date:
             # Parse the date. Timestamp in microseconds from unix epoch.
