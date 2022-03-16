@@ -9,7 +9,7 @@ DESCRIPTION = "An async GeoJSON client library for the U.S. Geological Survey Ea
 URL = "https://github.com/exxamalte/python-aio-geojson-usgs-earthquakes"
 
 REQUIRES = [
-    "aio_geojson_client>=0.16",
+    "aio_geojson_client>=0.17",
     "aiohttp>=3.7.4,<4",
     "pytz>=2019.01",
 ]
