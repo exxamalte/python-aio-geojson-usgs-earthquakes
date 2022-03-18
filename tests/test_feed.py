@@ -4,6 +4,7 @@ import datetime
 import aiohttp
 import pytest
 from aio_geojson_client.consts import UPDATE_OK
+from aio_geojson_client.exceptions import GeoJsonException
 
 from aio_geojson_usgs_earthquakes import UsgsEarthquakeHazardsProgramFeed
 from tests.utils import load_fixture
@@ -136,3 +137,12 @@ async def test_empty_feed(aresponses, event_loop):
         assert entries is not None
         assert len(entries) == 0
         assert feed.last_timestamp is None
+
+
+@pytest.mark.asyncio
+async def test_invalid_feed_type(event_loop):
+    """Test detection of invalid feed type."""
+    home_coordinates = (-31.0, 151.0)
+    async with aiohttp.ClientSession(loop=event_loop) as websession:
+        with pytest.raises(GeoJsonException):
+            UsgsEarthquakeHazardsProgramFeed(websession, home_coordinates, "INVALID")
