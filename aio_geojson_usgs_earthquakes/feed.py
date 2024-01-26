@@ -1,7 +1,8 @@
 """USGS Earthquake Hazards Program feed."""
+from __future__ import annotations
+
 import logging
 from datetime import datetime
-from typing import Dict, List, Optional, Tuple
 
 from aio_geojson_client.exceptions import GeoJsonException
 from aio_geojson_client.feed import GeoJsonFeed
@@ -22,7 +23,7 @@ class UsgsEarthquakeHazardsProgramFeed(
     def __init__(
         self,
         websession: ClientSession,
-        home_coordinates: Tuple[float, float],
+        home_coordinates: tuple[float, float],
         feed_type,
         filter_radius: float = None,
         filter_minimum_magnitude: float = None,
@@ -51,7 +52,7 @@ class UsgsEarthquakeHazardsProgramFeed(
         )
 
     def _new_entry(
-        self, home_coordinates: Tuple[float, float], feature, global_data: Dict
+        self, home_coordinates: tuple[float, float], feature, global_data: dict
     ) -> UsgsEarthquakeHazardsProgramFeedEntry:
         """Generate a new entry."""
         attribution = (
@@ -65,9 +66,9 @@ class UsgsEarthquakeHazardsProgramFeed(
 
     def _filter_entries_override(
         self,
-        entries: List[UsgsEarthquakeHazardsProgramFeedEntry],
-        filter_overrides: Dict = None,
-    ) -> List[UsgsEarthquakeHazardsProgramFeedEntry]:
+        entries: list[UsgsEarthquakeHazardsProgramFeedEntry],
+        filter_overrides: dict = None,
+    ) -> list[UsgsEarthquakeHazardsProgramFeedEntry]:
         """Filter the provided entries."""
         entries = super()._filter_entries_override(entries, filter_overrides)
         filter_minimum_magnitude = (
@@ -88,15 +89,15 @@ class UsgsEarthquakeHazardsProgramFeed(
         return entries
 
     def _extract_last_timestamp(
-        self, feed_entries: List[UsgsEarthquakeHazardsProgramFeedEntry]
-    ) -> Optional[datetime]:
+        self, feed_entries: list[UsgsEarthquakeHazardsProgramFeedEntry]
+    ) -> datetime | None:
         """Determine latest (newest) entry from the filtered feed."""
         if feed_entries:
             dates = sorted([entry.updated for entry in feed_entries], reverse=True)
             return dates[0]
         return None
 
-    def _extract_from_feed(self, feed: FeatureCollection) -> Optional[Dict]:
+    def _extract_from_feed(self, feed: FeatureCollection) -> dict | None:
         """Extract global metadata from feed."""
         global_data = {}
         title = self._search_in_metadata(feed, ATTR_TITLE)
