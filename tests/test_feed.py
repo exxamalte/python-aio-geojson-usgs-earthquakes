@@ -1,5 +1,7 @@
 """Test for the USGS Earthquake Hazards Program feed."""
+import asyncio
 import datetime
+from http import HTTPStatus
 
 import aiohttp
 import pytest
@@ -11,19 +13,16 @@ from tests.utils import load_fixture
 
 
 @pytest.mark.asyncio
-async def test_update_ok(aresponses, event_loop):
+async def test_update_ok(mock_aioresponse):
     """Test updating feed is ok."""
     home_coordinates = (-31.0, 151.0)
-    aresponses.add(
-        "earthquake.usgs.gov",
-        "/earthquakes/feed/v1.0/summary/significant_hour.geojson",
-        "get",
-        aresponses.Response(text=load_fixture("earthquakes-1.json"), status=200),
-        match_querystring=True,
+    mock_aioresponse.get(
+        "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_hour.geojson",
+        status=HTTPStatus.OK,
+        body=load_fixture("earthquakes-1.json"),
     )
 
-    async with aiohttp.ClientSession(loop=event_loop) as websession:
-
+    async with aiohttp.ClientSession(loop=asyncio.get_running_loop()) as websession:
         feed = UsgsEarthquakeHazardsProgramFeed(
             websession, home_coordinates, "past_hour_significant_earthquakes"
         )
@@ -70,19 +69,16 @@ async def test_update_ok(aresponses, event_loop):
 
 
 @pytest.mark.asyncio
-async def test_update_ok_with_minimum_magnitude(aresponses, event_loop):
+async def test_update_ok_with_minimum_magnitude(mock_aioresponse):
     """Test updating feed is ok, filtered by category."""
     home_coordinates = (-31.0, 151.0)
-    aresponses.add(
-        "earthquake.usgs.gov",
-        "/earthquakes/feed/v1.0/summary/significant_hour.geojson",
-        "get",
-        aresponses.Response(text=load_fixture("earthquakes-1.json"), status=200),
-        match_querystring=True,
+    mock_aioresponse.get(
+        "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_hour.geojson",
+        status=HTTPStatus.OK,
+        body=load_fixture("earthquakes-1.json"),
     )
 
-    async with aiohttp.ClientSession(loop=event_loop) as websession:
-
+    async with aiohttp.ClientSession(loop=asyncio.get_running_loop()) as websession:
         feed = UsgsEarthquakeHazardsProgramFeed(
             websession,
             home_coordinates,
@@ -109,19 +105,16 @@ async def test_update_ok_with_minimum_magnitude(aresponses, event_loop):
 
 
 @pytest.mark.asyncio
-async def test_empty_feed(aresponses, event_loop):
+async def test_empty_feed(mock_aioresponse):
     """Test updating feed is ok when feed does not contain any entries."""
     home_coordinates = (-31.0, 151.0)
-    aresponses.add(
-        "earthquake.usgs.gov",
-        "/earthquakes/feed/v1.0/summary/significant_hour.geojson",
-        "get",
-        aresponses.Response(text=load_fixture("earthquakes-2.json"), status=200),
-        match_querystring=True,
+    mock_aioresponse.get(
+        "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_hour.geojson",
+        status=HTTPStatus.OK,
+        body=load_fixture("earthquakes-2.json"),
     )
 
-    async with aiohttp.ClientSession(loop=event_loop) as websession:
-
+    async with aiohttp.ClientSession(loop=asyncio.get_running_loop()) as websession:
         feed = UsgsEarthquakeHazardsProgramFeed(
             websession, home_coordinates, "past_hour_significant_earthquakes"
         )
@@ -140,9 +133,9 @@ async def test_empty_feed(aresponses, event_loop):
 
 
 @pytest.mark.asyncio
-async def test_invalid_feed_type(event_loop):
+async def test_invalid_feed_type():
     """Test detection of invalid feed type."""
     home_coordinates = (-31.0, 151.0)
-    async with aiohttp.ClientSession(loop=event_loop) as websession:
+    async with aiohttp.ClientSession(loop=asyncio.get_running_loop()) as websession:
         with pytest.raises(GeoJsonException):
             UsgsEarthquakeHazardsProgramFeed(websession, home_coordinates, "INVALID")
