@@ -1,7 +1,6 @@
 """USGS Earthquake Hazards Program feed entry."""
 import datetime
 import logging
-from typing import Optional, Tuple
 
 from aio_geojson_client.feed_entry import FeedEntry
 from geojson import Feature
@@ -25,14 +24,14 @@ class UsgsEarthquakeHazardsProgramFeedEntry(FeedEntry):
     """USGS Earthquake Hazards Program feed entry."""
 
     def __init__(
-        self, home_coordinates: Tuple[float, float], feature: Feature, attribution: str
+        self, home_coordinates: tuple[float, float], feature: Feature, attribution: str
     ):
         """Initialise this service."""
         super().__init__(home_coordinates, feature)
         self._attribution = attribution
 
     @property
-    def attribution(self) -> Optional[str]:
+    def attribution(self) -> str | None:
         """Return the attribution of this entry."""
         return self._attribution
 
@@ -63,7 +62,7 @@ class UsgsEarthquakeHazardsProgramFeedEntry(FeedEntry):
         if publication_date:
             # Parse the date. Timestamp in microseconds from unix epoch.
             publication_date = datetime.datetime.fromtimestamp(
-                publication_date / 1000, tz=datetime.timezone.utc
+                publication_date / 1000, tz=datetime.UTC
             )
         return publication_date
 
@@ -74,7 +73,7 @@ class UsgsEarthquakeHazardsProgramFeedEntry(FeedEntry):
         if updated_date:
             # Parse the date. Timestamp in microseconds from unix epoch.
             updated_date = datetime.datetime.fromtimestamp(
-                updated_date / 1000, tz=datetime.timezone.utc
+                updated_date / 1000, tz=datetime.UTC
             )
         return updated_date
 
