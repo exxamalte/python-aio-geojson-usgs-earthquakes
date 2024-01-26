@@ -62,7 +62,7 @@ class UsgsEarthquakeHazardsProgramFeedEntry(FeedEntry):
         if publication_date:
             # Parse the date. Timestamp in microseconds from unix epoch.
             publication_date = datetime.datetime.fromtimestamp(
-                publication_date / 1000, tz=datetime.UTC
+                publication_date / 1000, tz=datetime.timezone.utc
             )
         return publication_date
 
@@ -73,7 +73,7 @@ class UsgsEarthquakeHazardsProgramFeedEntry(FeedEntry):
         if updated_date:
             # Parse the date. Timestamp in microseconds from unix epoch.
             updated_date = datetime.datetime.fromtimestamp(
-                updated_date / 1000, tz=datetime.UTC
+                updated_date / 1000, tz=datetime.timezone.utc
             )
         return updated_date
 
