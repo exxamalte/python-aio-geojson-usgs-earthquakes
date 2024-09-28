@@ -1,6 +1,6 @@
 # python-aio-geojson-usgs-earthquakes
 
-[![Build Status](https://github.com/exxamalte/python-aio-geojson-usgs-earthquakes/workflows/CI/badge.svg?branch=main)](https://github.com/exxamalte/python-aio-geojson-usgs-earthquakes/actions?workflow=CI)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/exxamalte/python-aio-geojson-usgs-earthquakes/ci.yaml)](https://github.com/exxamalte/python-aio-geojson-usgs-earthquakes/actions/workflows/ci.yaml)
 [![codecov](https://codecov.io/gh/exxamalte/python-aio-geojson-usgs-earthquakes/branch/main/graph/badge.svg?token=91DC4HHZQJ)](https://codecov.io/gh/exxamalte/python-aio-geojson-usgs-earthquakes)
 [![PyPi](https://img.shields.io/pypi/v/aio-geojson-usgs-earthquakes.svg)](https://pypi.python.org/pypi/aio-geojson-usgs-earthquakes)
 [![Version](https://img.shields.io/pypi/pyversions/aio-geojson-usgs-earthquakes.svg)](https://pypi.python.org/pypi/aio-geojson-usgs-earthquakes)
