@@ -1,12 +1,13 @@
 """Test for the USGS Earthquake Hazards Program feed."""
+
 import asyncio
 import datetime
 from http import HTTPStatus
 
-import aiohttp
-import pytest
 from aio_geojson_client.consts import UPDATE_OK
 from aio_geojson_client.exceptions import GeoJsonException
+import aiohttp
+import pytest
 
 from aio_geojson_usgs_earthquakes import UsgsEarthquakeHazardsProgramFeed
 from tests.utils import load_fixture
