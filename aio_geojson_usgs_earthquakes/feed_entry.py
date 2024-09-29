@@ -1,4 +1,5 @@
 """USGS Earthquake Hazards Program feed entry."""
+
 from __future__ import annotations
 
 import datetime

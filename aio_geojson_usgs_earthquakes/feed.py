@@ -1,8 +1,9 @@
 """USGS Earthquake Hazards Program feed."""
+
 from __future__ import annotations
 
-import logging
 from datetime import datetime
+import logging
 
 from aio_geojson_client.exceptions import GeoJsonException
 from aio_geojson_client.feed import GeoJsonFeed
@@ -25,8 +26,8 @@ class UsgsEarthquakeHazardsProgramFeed(
         websession: ClientSession,
         home_coordinates: tuple[float, float],
         feed_type,
-        filter_radius: float = None,
-        filter_minimum_magnitude: float = None,
+        filter_radius: float | None = None,
+        filter_minimum_magnitude: float | None = None,
     ):
         """Initialise this service."""
         if feed_type in URLS:
@@ -38,18 +39,12 @@ class UsgsEarthquakeHazardsProgramFeed(
             )
         else:
             _LOGGER.error("Unknown feed category %s", feed_type)
-            raise GeoJsonException("Feed category must be one of %s" % URLS.keys())
+            raise GeoJsonException(f"Feed category must be one of {URLS.keys()}")
         self._filter_minimum_magnitude = filter_minimum_magnitude
 
     def __repr__(self):
         """Return string representation of this feed."""
-        return "<{}(home={}, url={}, radius={}, magnitude={})>".format(
-            self.__class__.__name__,
-            self._home_coordinates,
-            self._url,
-            self._filter_radius,
-            self._filter_minimum_magnitude,
-        )
+        return f"<{self.__class__.__name__}(home={self._home_coordinates}, url={self._url}, radius={self._filter_radius}, magnitude={self._filter_minimum_magnitude})>"
 
     def _new_entry(
         self, home_coordinates: tuple[float, float], feature, global_data: dict
@@ -67,7 +62,7 @@ class UsgsEarthquakeHazardsProgramFeed(
     def _filter_entries_override(
         self,
         entries: list[UsgsEarthquakeHazardsProgramFeedEntry],
-        filter_overrides: dict = None,
+        filter_overrides: dict | None = None,
     ) -> list[UsgsEarthquakeHazardsProgramFeedEntry]:
         """Filter the provided entries."""
         entries = super()._filter_entries_override(entries, filter_overrides)

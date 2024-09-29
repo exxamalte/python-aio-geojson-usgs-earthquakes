@@ -1,4 +1,5 @@
 """Feed Manager for USGS Earthquake Hazards Program feed."""
+
 from __future__ import annotations
 
 from collections.abc import Awaitable, Callable
@@ -21,9 +22,9 @@ class UsgsEarthquakeHazardsProgramFeedManager(FeedManagerBase):
         remove_callback: Callable[[str], Awaitable[None]],
         coordinates: tuple[float, float],
         feed_type: str,
-        filter_radius: float = None,
-        filter_minimum_magnitude: float = None,
-        status_callback: Callable[[StatusUpdate], Awaitable[None]] = None,
+        filter_radius: float | None = None,
+        filter_minimum_magnitude: float | None = None,
+        status_callback: Callable[[StatusUpdate], Awaitable[None]] | None = None,
     ):
         """Initialize the USGS Earthquake Hazards Program Manager."""
         feed = UsgsEarthquakeHazardsProgramFeed(
