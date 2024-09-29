@@ -1,4 +1,5 @@
 """Test for the USGS Earthquake Hazards Program feed general setup."""
+
 from aio_geojson_usgs_earthquakes import __version__
 
 

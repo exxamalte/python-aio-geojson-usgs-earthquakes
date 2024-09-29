@@ -1,4 +1,5 @@
 """Test for the USGS Earthquake Hazards Program feed manager."""
+
 import asyncio
 import datetime
 from http import HTTPStatus
