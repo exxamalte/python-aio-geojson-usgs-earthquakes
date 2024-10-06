@@ -7,7 +7,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "aio_geojson_usgs_earthquakes"
-version  = "0.3"
+version  = "0.4"
 requires-python = ">= 3.9"
 authors = [
   {name = "Malte Franken", email = "coding@subspace.de"},
