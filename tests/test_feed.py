@@ -14,10 +14,10 @@ from tests.utils import load_fixture
 
 
 @pytest.mark.asyncio
-async def test_update_ok(mock_aioresponse):
+async def test_update_ok(mock_aiointercept):
     """Test updating feed is ok."""
     home_coordinates = (-31.0, 151.0)
-    mock_aioresponse.get(
+    mock_aiointercept.get(
         "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_hour.geojson",
         status=HTTPStatus.OK,
         body=load_fixture("earthquakes-1.json"),
@@ -70,10 +70,10 @@ async def test_update_ok(mock_aioresponse):
 
 
 @pytest.mark.asyncio
-async def test_update_ok_with_minimum_magnitude(mock_aioresponse):
+async def test_update_ok_with_minimum_magnitude(mock_aiointercept):
     """Test updating feed is ok, filtered by category."""
     home_coordinates = (-31.0, 151.0)
-    mock_aioresponse.get(
+    mock_aiointercept.get(
         "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_hour.geojson",
         status=HTTPStatus.OK,
         body=load_fixture("earthquakes-1.json"),
@@ -106,10 +106,10 @@ async def test_update_ok_with_minimum_magnitude(mock_aioresponse):
 
 
 @pytest.mark.asyncio
-async def test_empty_feed(mock_aioresponse):
+async def test_empty_feed(mock_aiointercept):
     """Test updating feed is ok when feed does not contain any entries."""
     home_coordinates = (-31.0, 151.0)
-    mock_aioresponse.get(
+    mock_aiointercept.get(
         "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_hour.geojson",
         status=HTTPStatus.OK,
         body=load_fixture("earthquakes-2.json"),
