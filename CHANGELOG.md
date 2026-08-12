@@ -1,5 +1,8 @@
 # Changes
 
+## 2026.8.1 (12/08/2026)
+* Fixed trusted publishing workflow. 
+
 ## 2026.8.0 (12/08/2026)
 * Added trusted publishing workflow.
 
