@@ -1,5 +1,8 @@
 # Changes
 
+## 2026.8.0 (12/08/2026)
+* Added trusted publishing workflow.
+
 ## 2026.6.0 (30/06/2026)
 * Added Python 3.13 support.
 * Added Python 3.14 support.
